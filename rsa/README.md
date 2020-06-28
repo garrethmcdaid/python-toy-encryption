@@ -33,9 +33,9 @@ is that computers can multiple large numbers very quickly, because the formula f
 Prime Factorization is a less familiar concept. This is where a number is broken down into the Prime numbers that create it.
 
 For instance the Prime Factorisation of 21 is:
-```markdown
-2<sup>4</sup> + 5
-``` 
+
+<code>2<sup>4</sup> + 5</code>
+
 
 Computers struggle with Prime Factorisation, because there is no formula to extract it. It involves trial and error. It therefore
 takes a computer a lot longer to obtain the Prime Factorization of a number than to multiply two numbers
@@ -45,46 +45,48 @@ We will understand the significance of this later.
 ### The factor of Primes
 
 The math involved in RSA Public Private Key encryption (hereafter referred to as RSA) is more complex than for the Diffie-Hellmann Private Key exchange, 
-but both have common features, primarily Prime numbers and the modulus function.
+but both have common features, primarily Prime numbers and the modulo function.
 
-A Prime number is a number than can only be divided by 1 and itself. eg 3, 7, 11 or 29. Prime numbers are the building blocks 
+A Prime number is a number than can only be divided by 1 and itself. eg `3, 7, 11 or 29`. Prime numbers are the building blocks 
 of all non-Prime (composite) numbers. They feature regularly in cryptography because they are rigid. For instance, the only 
-way to derive the Prime 7 is 1x7, whereas you can derive the non-Prime 16 with 1x16, 2x8 or 4x4.
+way to derive the Prime 7 is `1x7`, whereas you can derive the non-Prime 16 with `1x16, 2x8 or 4x4`.
 
-The modulus function is as follows. The modulo of a and b is equal to the remainder when you divide a by b, e.g. 16(mod 7) = 2 
+The modulo function is as follows. The modulo of *a* and *b* is equal to the remainder when you divide *a* by *b*, e.g.
+```markdown
+16(mod 7) = 2
+```
 
-The objective of RSA is for Alice to develop a lock for which only she holds the key. She can then publish copies of that 
+
+The objective of RSA is for Alice to develop a *lock* for which only she holds the *key*. She can then publish copies of that 
 lock ( minus the key ) and allow others, ie Bob, to lock their data with that lock and send to her. She can then unlock it, as 
-she has a key that fits any copy of the lock.
+she has a key ( and the only key ) that fits any copy of the lock.
 
-In this scenario, the lock is Alice's Public Key, and the key to that lock is Alice's Private Key.
+Alice starts by creating her lock. For this she choses 2 Prime numbers (we'll use small ones here, but in the real world they would be very large).
 
-Alice starts by creating her Public Key (her lock). For this she choses 2 Prime numbers (we'll use small ones here, but in the real world they would be very large).
-
-```bash
+```markdown
 p1=7
 p2=11
 ```
 
-She nows multiplies them, and obtains value referred to as the factor of Primes:
+She nows multiplies them, and obtains value referred to as the factor of Primes (*F*):
 ```bash
-p1*p2=F
+p1 x p2 = F
 
-7*11=77
+7 x 11 = 77
 ```
-The factor of Primes is 77.
+The factor of Primes (*F*) is 77.
 
 ### PHI
 
-At this point, we introduce a new mathematical formula which you probably won't have heard before, which is known as PHI.
+At this point, we introduce a new mathematical formula which you probably won't have heard of before, which is known as *PHI*.
 
 For any given number, the PHI value of that number is the number of numbers between 1 and that number where 1 is the largest 
 common factor shared between both numbers.
 
 Whahhht?
 
-Here's an example. Let's get the PHI value of 9. The number between 1 and 9 are:
-```bash
+Here's an example. Let's get the PHI value of 9. The numbers between 1 and 9 are:
+```markdown
 1 2 3 4 5 6 7 8
 ```
 
@@ -112,14 +114,15 @@ Now, let's do the same thing for a Prime number, 5:
 
 So PHI(5) = 4
 
-If you try this again with another *Prime* number, you'll notice a similar pattern. The PHI value of any Prime number is:
-```bash
-P-1
+If you try this again with any other *Prime* number, no matter how large, you'll notice a similar pattern. 
+The PHI value of any Prime number is:
+```markdown
+p - 1
 ```
 
-So, if we have two Prime numbers, *p* and *q*, we can obtain the PHI value of their factorization as follows:
+So, if we have two Prime numbers, *p1* and *p2*, we can obtain the PHI value of their factorization as follows:
 ```markdown
-if F = p1 x p2, then PHI(F) = (p1-1)(p2-1)
+if F = p1 x p2, then PHI(F) = (p1 - 1)(p2 - 1)
 ```
 
 Now, recall earlier when we explained that computers can multiply numbers very easily but struggle when they have to find 
@@ -128,15 +131,19 @@ the Prime Factorization of a number.
 Alice has derived the value of F by multiplying p1 x p2. She can also easily derive the value of PHI(F), because she knows 
 the component Primes of F.
 
+```markdown
+PHI(F) = (p1 - 1)(p2 - 1)
+```
+
 However, for anyone else, finding the value of PHI(F) would be very difficult, because they don't know
 the component Primes of F. In a real world situation, where very large numbers would be used, someone who wanted to obtain the 
 Prime Factorization of F would have to expand enormous computing resources, to the point where doing do would make no sense. 
 
-Alice now has a value, PHI(F) that only she can compute easily. She can now leverage this to complete the RSA framework.
+Alice now has a value, PHI(F) that only she can compute easily, but no one else can. She can now leverage this to complete the RSA framework.
 
 ### The Public Exponent
 
-Alice's public lock is now partially complete, but it needs another part, the Public Exponent.
+Alice's lock is now partially complete, but it needs another part, the Public Exponent.
 
 In RSA, the Public Exponent (let's call it *e*) is the smallest number that is coprime with the PHI value of the factor of Primes (*PHI(F)*).
 
@@ -144,20 +151,20 @@ What does coprime mean?
 
 One number is coprime with another if their only common factor is 1.
 
-So, 4 is coprime with 9 because the only factor they share is one (even though 4 isn't a Prime number).
+So, `4` is coprime with `9` because the only factor they share is `1` (even though `4` isn't a Prime number).
 
-9 is not coprime with 27, because they share a common factor, 3.
+`9` is **not** coprime with `27`, because they share a common factor, `3`.
 
-For small numbers, we can figure out the smallest coprime, but for large numbers, we use a helper method in the script. 
-That's all we need to know. The Public Exponent (*e* ) is the smallest coprime of the factor of Primes (*F*).
+For small numbers, we can mentally figure out the smallest coprime, but for large numbers, we use a helper method in the script. 
+That's all we need to know. The Public Exponent (*e*) is the smallest coprime of the PHI value of the factor of Primes (*PHI(F()*).
 
 ### The Public Key
 
-Alice's lock is now complete. It is composed of the Public Exponent (*e*) and the factor of Primes (*F*), **not** the PHI 
-value of F. Remember, only Alice should know the value of PHI(F).
+Alice's lock is now complete. It is composed of the Public Exponent (*e*) and the factor of Primes (*F*), **not** PHI(F)). 
+Remember, only Alice should know the value of PHI(F).
 
-In RSA, Alice's lock is called her Public Key. It's a little bit counter-intuitive when we also refer to a Private Key. IMHO, 
-a 'Public Lock' is more intuitive, but lets stick with convention, and refer to the "Public Lock" as the Public Key from this point on.
+In RSA, Alice's lock is called her Public Key. It's a little bit counter-intuitive when we also refer to a Private Key. Perhaps 
+a 'Public Lock' is more intuitive, but let's stick with convention, and refer to the "Public Lock" as the Public Key from this point on.
 
 ### The Private Key
 
@@ -167,8 +174,8 @@ This is the most complex bit of math in RSA, so hold tight.
 
 Let's recall again: only Alice knows the value of PHI(F), so if she can obtain a value that depends on knowing PHI(F) she has her Private Key.
 
-In RSA, the value used is the *modular inverse* of PHI(F). Trying to de-construct the modular inverse into plain speak is not
-easy, and probably not necessary. Its somewhat similar to the *multiplicative inverse*, also called the *reciprocal*, which is easier to understand.
+In RSA, the value used for this is the *modular inverse* of PHI(F). Trying to de-construct the modular inverse into plain speak is not
+easy, and probably not necessary. It's somewhat similar to the *multiplicative inverse*, also called the *reciprocal*, which is easier to understand.
 
 Consider:
 ```markdown
@@ -204,21 +211,20 @@ important, provided it is derived in some way using PHI(F).
 
 Alice now has both her lock (her Public Key) and her key (her Private Key). This is all she needs. 
 
-She now publishs her Private Key on the Internet, and sits back and waits to receive encrypted messages that she can unlock with her
-Private Key.
+She now publishes her Public Key on the Internet, and sits back and waits to receive encrypted messages from unknown persons 
+that she can unlock with her Private Key.
 
 Bob decides he wants to send Alice a secret message that only she can read. He converts the plaintext message to a series of numbers (using ASCII). He know encrypts each 
 number (*m*) into an encrypted number (*c* ) as follows:
-```markdown
-c = m<sup>e</sup> (mod F)
-```
+
+<code>c = m<sup>e</sup> (mod F)</code>
 
 Where *e* and *F* are obtained from Alice's Public Key.
 
 He then sends *c* to Alice, and Alice decrypts it as follows, using her Private Key, *d*:
-```markdown
-m = c<sup>d</sup> (mod F)
-```
+
+<code>m = c<sup>d</sup> (mod F)</code>
+
 
 Alice, and only Alice, now has Bob's plaintext message *m*, because only Alice knows the value of *d*.
 

@@ -49,18 +49,17 @@ Let's test if 3 if a Primitive Root of the Prime 7:
 
 So the numbers between 1 and (p - 1) are `1,2,3,4,5,6` as represented by the series of exponent values applied to 3.
 
-```html
-3<sup>1</sup> = 3
-3<sup>2</sup> = 9
-3<sup>3</sup> = 27
-3<sup>4</sup> = 81
-3<sup>5</sup> = 243
-3<sup>6</sup> = 729
-```
+
+<code>3<sup>1</sup> = 3</code><br>
+<code>3<sup>2</sup> = 9</code><br>
+<code>3<sup>3</sup> = 27</code><br>
+<code>3<sup>4</sup> = 81</code><br>
+<code>3<sup>5</sup> = 243</code><br>
+<code>3<sup>6</sup> = 729</code><br>
 
 Then, for each value of 3 multiplied by each of these exponents, we apply (mod 7).
 
-```html
+```
 3(mod 7) = 3
 9(mod 7) = 2
 27(mod 7) = 6
@@ -85,28 +84,27 @@ First, each party chooses a random secret number. They **never** share these num
 
 Alice now generates the following payload:
 
-```html
-alice_payload = generator<sup>alice_secret</sup>(mod p)
-```
- and sends it to Bob.
+<code>alice_payload = generator<sup>alice_secret</sup>(mod p)</code>
+
+and sends it to Bob.
  
- Bob does the same:
-```html
-bob_payload = generator<sup>bob_secret</sup>(mod p)
-```
+Bob does the same:
+ 
+<code>bob_payload = generator<sup>bob_secret</sup>(mod p)</code>
+
 and sends it to Alice.
+
 
 Using each other's payloads, the can now perform a final calculation to reveal the shared component in the payloads, which is their shared key:
 
 Alice
-```html
-key=bob_payload<sup>alice_secret</sup>(mod p)
-```
+
+<code>key=bob_payload<sup>alice_secret</sup>(mod p)</code>
+ 
  
 Bob
-```html
-key=alice_payload<sup>bob_secret</sup>(mod p)
-```
+
+<code>key=alice_payload<sup>bob_secret</sup>(mod p)</code>
 
 They now both have `key`, which has never been shared across the network, with which they can encrypt and decrypt data.
 
