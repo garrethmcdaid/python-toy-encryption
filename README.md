@@ -13,7 +13,7 @@ messages without the need for the key to be transmitted.
 
 Example: the creation of a VPN between 2 computers
 
-[Click here for more](./diffie-hellmann/README.md)
+[Click here for more](./diffie-hellmann)
 
 ## RSA Public Private Key Encryption
 
@@ -22,7 +22,7 @@ that has been made available publicly by that person.
 
 Example: sending an encrypted email to someone, or accessing a web server over SSL/TLS
 
-[Click here for more](./rsa/README.md)
+[Click here for more](./rsa)
 
 ## Eliptic Curve Encryption
 
