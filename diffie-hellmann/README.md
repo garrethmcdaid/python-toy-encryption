@@ -15,20 +15,25 @@ without having to transmit it.
 
 Prime numbers are key to Diffie-Hellmann.
 
-A Prime number is a number than can only be divided by 1 and itself. eg 3, 7, 11 or 29. Prime numbers are the building 
-blocks of all non-Prime (compposite) numbers. They feature regularly in crytography because they are rigid. 
-For instance, the only way to derive the Prime 7 is 1x7, whereas you can derive the non-Prime 16 with 1x16, 2x8 or 4x4.
+A Prime number is a number than can only be divided by 1 and itself. eg 
+```
+3, 7, 11 or 29.
+```
+Prime numbers are the building 
+blocks of all non-Prime (composite) numbers. They feature regularly in cryptography because they are rigid. 
 
-Another mathematical concept that is key to Diffie-Hellman is the modulo. The modulo of a and b is equal to the remainder 
-when you divide a by b, e.g. 16(mod 7) = 2 
+For instance, the only way to derive the Prime 7 is `1 x 7`, whereas you can derive the non-Prime 16 with 
+`1x16, 2x8 or 4x4.`
 
-A Prime number is a number than can only be divided by 1 and itself. eg 3, 7, 11 or 29. Prime numbers are the building blocks of all non-Prime (compposite) numbers. They feature regularly in crytography because they are rigid. For instance, the only way to derive the Prime 7 is 1x7, whereas you can derive the non-Prime 16 with 1x16, 2x8 or 4x4.
-
-Another mathematical concept that is key to Diffie-Hellman is the modulo. The modulo of a and b is equal to the remainder when you divide a by b, e.g. 16(mod 7) = 4 
+Another mathematical concept that is key to Diffie-Hellman is the *modulo*. 
+The modulo of *a* and *b* is equal to the remainder when you divide *a* by *b*, e.g.
+ ```
+ 16(mod 7) = 2
+ ``` 
 
 The key exchange is initiated by one of the parties.
 
-Let's say this is Alice, who initiates the key exchange by choosing a Prime number (p), for which they then find a Primitive Root.
+Let's say this is Alice, who initiates the key exchange by choosing a Prime number *p*, for which they then find a *Primitive Root*.
 
 What's a Primitive Root?
 
@@ -37,14 +42,14 @@ Lets's say we have the Prime number 7. The Primitive Roots of 7 are:
 3, 5
 ```
 
-A Primitive Root of a Prime (p) is a number that when multiplied to the power of every number between 1 and (P-1), 
-to which (mod p) is then applied, equals a distinct number
+A Primitive Root of a Prime *p* is a number that when multiplied to the power of every number between 1 and (*p* - 1), 
+to which (mod *p*) is then applied, equals a distinct number
 
 Let's test if 3 if a Primitive Root of the Prime 7:
 
-So the numbers between 1 and (p - 1) are 1,2,3,4,5,6, as represented by the series of exponent values applied to 3.
+So the numbers between 1 and (p - 1) are `1,2,3,4,5,6` as represented by the series of exponent values applied to 3.
 
-```markdown
+```html
 3<sup>1</sup> = 3
 3<sup>2</sup> = 9
 3<sup>3</sup> = 27
@@ -55,7 +60,7 @@ So the numbers between 1 and (p - 1) are 1,2,3,4,5,6, as represented by the seri
 
 Then, for each value of 3 multiplied by each of these exponents, we apply (mod 7).
 
-```markdown
+```html
 3(mod 7) = 3
 9(mod 7) = 2
 27(mod 7) = 6
@@ -67,7 +72,7 @@ Then, for each value of 3 multiplied by each of these exponents, we apply (mod 7
 In each case, we get a distinct number, therefore 3 is a Primitive Root of Prime 7. 
 
 In the script, a helper method is defined to find Primitive Roots of given Prime numbers. In cryptographic parlance, 
-the Primitive Root is called the *generator*, so lets call it that.
+the Primitive Root is called the *generator*, so let's call it that.
 
 Coming back to Alice, she now has a Prime number and a generator, which she shares with Bob. Either apart of together, 
 these numbers cannot be used to decrypt data, so there is no issue in sharing them on a network. 
@@ -80,13 +85,13 @@ First, each party chooses a random secret number. They **never** share these num
 
 Alice now generates the following payload:
 
-```markdown
+```html
 alice_payload = generator<sup>alice_secret</sup>(mod p)
 ```
  and sends it to Bob.
  
  Bob does the same:
-```markdown
+```html
 bob_payload = generator<sup>bob_secret</sup>(mod p)
 ```
 and sends it to Alice.
@@ -94,12 +99,12 @@ and sends it to Alice.
 Using each other's payloads, the can now perform a final calculation to reveal the shared component in the payloads, which is their shared key:
 
 Alice
-```markdown
+```html
 key=bob_payload<sup>alice_secret</sup>(mod p)
 ```
  
 Bob
-```markdown
+```html
 key=alice_payload<sup>bob_secret</sup>(mod p)
 ```
 
