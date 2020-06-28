@@ -95,7 +95,7 @@ Bob does the same:
 and sends it to Alice.
 
 
-Using each other's payloads, the can now perform a final calculation to reveal the shared component in the payloads, which is their shared key:
+Using each other's payloads, they can now perform a final calculation to reveal the shared component in the payloads, which is their shared key:
 
 Alice
 

@@ -45,7 +45,7 @@ We will understand the significance of this later.
 ### The factor of Primes
 
 The math involved in RSA Public Private Key encryption (hereafter referred to as RSA) is more complex than for the Diffie-Hellmann Private Key exchange, 
-but both have common features, primarily Prime numbers and the modulo function.
+but both have common features, primarily Prime numbers and the *modulo* function.
 
 A Prime number is a number than can only be divided by 1 and itself. eg `3, 7, 11 or 29`. Prime numbers are the building blocks 
 of all non-Prime (composite) numbers. They feature regularly in cryptography because they are rigid. For instance, the only 
@@ -137,7 +137,7 @@ PHI(F) = (p1 - 1)(p2 - 1)
 
 However, for anyone else, finding the value of PHI(F) would be very difficult, because they don't know
 the component Primes of F. In a real world situation, where very large numbers would be used, someone who wanted to obtain the 
-Prime Factorization of F would have to expand enormous computing resources, to the point where doing do would make no sense. 
+Prime Factorization of F would have to expend enormous computing resources, and even then, resolving the Prime Factorization would take years. 
 
 Alice now has a value, PHI(F) that only she can compute easily, but no one else can. She can now leverage this to complete the RSA framework.
 
@@ -163,7 +163,7 @@ That's all we need to know. The Public Exponent (*e*) is the smallest coprime of
 Alice's lock is now complete. It is composed of the Public Exponent (*e*) and the factor of Primes (*F*), **not** PHI(F)). 
 Remember, only Alice should know the value of PHI(F).
 
-In RSA, Alice's lock is called her Public Key. It's a little bit counter-intuitive when we also refer to a Private Key. Perhaps 
+In RSA, Alice's lock is called her *Public Key*. It's a little bit counter-intuitive when we also refer to a Private Key. Perhaps 
 a 'Public Lock' is more intuitive, but let's stick with convention, and refer to the "Public Lock" as the Public Key from this point on.
 
 ### The Private Key
