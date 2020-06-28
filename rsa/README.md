@@ -181,7 +181,7 @@ Consider:
 ```markdown
 a x b = 1
 ```
-b is the multiplicative inverse of a, and vice versa, because when factored together they make 1. If you have the value of a, 
+*b* is the multiplicative inverse of *a*, and vice versa, because when factored together they make 1. If you have the value of a, 
 can easily find the value of b.
 
 The *modular inverse* is where:
