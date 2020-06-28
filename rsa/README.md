@@ -83,7 +83,7 @@ At this point, we introduce a new mathematical formula which you probably won't 
 For any given number, the PHI value of that number is the number of numbers between 1 and that number where 1 is the largest 
 common factor shared between both numbers.
 
-Whahhht?
+Huh?
 
 Here's an example. Let's get the PHI value of 9. The numbers between 1 and 9 are:
 ```markdown
