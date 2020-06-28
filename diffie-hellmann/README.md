@@ -17,13 +17,13 @@ Prime numbers are key to Diffie-Hellmann.
 
 A Prime number is a number than can only be divided by 1 and itself. eg 
 ```
-3, 7, 11 or 29.
+3, 7, 11 or 29
 ```
 Prime numbers are the building 
 blocks of all non-Prime (composite) numbers. They feature regularly in cryptography because they are rigid. 
 
 For instance, the only way to derive the Prime 7 is `1 x 7`, whereas you can derive the non-Prime 16 with 
-`1x16, 2x8 or 4x4.`
+`1x16, 2x8 or 4x4`
 
 Another mathematical concept that is key to Diffie-Hellman is the *modulo*. 
 The modulo of *a* and *b* is equal to the remainder when you divide *a* by *b*, e.g.
@@ -38,7 +38,7 @@ Let's say this is Alice, who initiates the key exchange by choosing a Prime numb
 What's a Primitive Root?
 
 Lets's say we have the Prime number 7. The Primitive Roots of 7 are:
-```bash
+```markdown
 3, 5
 ```
 

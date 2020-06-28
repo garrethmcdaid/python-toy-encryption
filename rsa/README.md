@@ -1,6 +1,6 @@
-#RSA Public Private Key Encryption
+# RSA Public Private Key Encryption
 
-##Introduction
+## Introduction
 
 The Diffie-Hellmann key exchange was a major breakthrough in cryptography. Where previously Alice and Bob would have had
 exchange a private key to encrypt the data sent between them, now they had a mechanism to establish a private key without
@@ -23,7 +23,7 @@ the VPN.
 Alice wants to set up a web server, and let Bob, or anyone else login to it with a username and password. For this, Alice needs 
 to publish a mechanism that allows people to send her their private data securely. For this, she will use RSA Public Private Key Encryption.
 
-##The math
+## The math
 
 ### Multiplication versus Prime Factorization
 
@@ -229,7 +229,3 @@ He then sends *c* to Alice, and Alice decrypts it as follows, using her Private 
 Alice, and only Alice, now has Bob's plaintext message *m*, because only Alice knows the value of *d*.
 
 The RSA exchange is now complete and secure.
-
-
-
-
