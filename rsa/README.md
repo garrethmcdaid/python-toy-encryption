@@ -3,12 +3,12 @@
 ## Introduction
 
 The Diffie-Hellmann key exchange was a major breakthrough in cryptography. Where previously Alice and Bob would have had
-exchange a private key to encrypt the data sent between them, now they had a mechanism to establish a private key without
-have to transmit any secure information.
+to exchange a private key to encrypt the data sent between them, now they had a mechanism to establish a shared private key without
+one of them having to transmit it to the other.
 
 However, Diffie-Hellmann was still limited in that communication between Alice and Bob had to be planned. They would have 
 to decide in advance that they were going to communicate securely. If Bob was unknown to Alice, or they had no way of preparing
-communication between them, Diffie-Hellmann was of limited use to them.
+communication between them, Diffie-Hellmann was of limited use.
 
 This is the problem that RSA Public Private Key encryption solves. It allows Bob, or Charlie, or Dave, or Eve, or anyone
 to communicate with Alice even if they've never communicated with Alice before, and in a way that doesn't require Alice to
