@@ -27,3 +27,11 @@ Example: sending an encrypted email to someone, or accessing a web server over S
 ## Eliptic Curve Encryption
 
 *Coming soon*
+
+# Credits
+
+This course by the Khan Academy is free and very good 
+
+https://www.khanacademy.org/computing/computer-science/cryptography#modern-crypt
+
+Further credits are provided in script comments
