@@ -1,37 +1,50 @@
-**Diffie-Hellmann private key exchange**
+# Diffie-Hellmann private key exchange
+
+## Introduction
 
 Prior to Diffie-Hellmann, all encryption was symmetric.
 
-That means that if Alice and Bod wanted to encrypt data before they sent it across a network, they first had to share a private key, which meant transmitting the key in some way, which meant the key was exposed to corruption.
+That means that if Alice and Bod wanted to encrypt data before they sent it across a network, they first had to share a 
+private key, which meant transmitting the key in some way, which meant the key was exposed to corruption.
 
-Diffie-Hellmann solved this problem. It provided a mathematical way for Alice and Bob to use the same private key without having to transmit it.
+Diffie-Hellmann solved this problem. It provided a mathematical way for Alice and Bob to use the same key 
+without having to transmit it.
+
+
+## The math
 
 Prime numbers are key to Diffie-Hellmann.
+
+A Prime number is a number than can only be divided by 1 and itself. eg 3, 7, 11 or 29. Prime numbers are the building 
+blocks of all non-Prime (compposite) numbers. They feature regularly in crytography because they are rigid. 
+For instance, the only way to derive the Prime 7 is 1x7, whereas you can derive the non-Prime 16 with 1x16, 2x8 or 4x4.
+
+Another mathematical concept that is key to Diffie-Hellman is the modulo. The modulo of a and b is equal to the remainder 
+when you divide a by b, e.g. 16(mod 7) = 2 
 
 A Prime number is a number than can only be divided by 1 and itself. eg 3, 7, 11 or 29. Prime numbers are the building blocks of all non-Prime (compposite) numbers. They feature regularly in crytography because they are rigid. For instance, the only way to derive the Prime 7 is 1x7, whereas you can derive the non-Prime 16 with 1x16, 2x8 or 4x4.
 
 Another mathematical concept that is key to Diffie-Hellman is the modulo. The modulo of a and b is equal to the remainder when you divide a by b, e.g. 16(mod 7) = 4 
 
-**The mathematical exchange**
+The key exchange is initiated by one of the parties.
 
-The key exchange starts with both Alice and Bob computing a payload.
+Let's say this is Alice, who initiates the key exchange by choosing a Prime number (p), for which they then find a Primitive Root.
 
-One party (let's say Alice )initiates the exchange by choosing a Prime number (P), for which they then find a primitive root.
+What's a Primitive Root?
 
-What's a primitive root?
-
-Lets's say we have the Prime number 7. The primitive roots of 7 are:
+Lets's say we have the Prime number 7. The Primitive Roots of 7 are:
 ```bash
 3, 5
 ```
 
-A primitive root of a Prime (P) is a number that when multiplied to the power of every number between 1 and (P-1), to which (mod P) is then applied, equals a distinct number
+A Primitive Root of a Prime (p) is a number that when multiplied to the power of every number between 1 and (P-1), 
+to which (mod p) is then applied, equals a distinct number
 
-Let's test if 3 if a primitive root of the Prime 7:
+Let's test if 3 if a Primitive Root of the Prime 7:
 
-So the numbers between 1 and (P-1) are 1,2,3,4,5,6, as represented by the series of exponent values applied to 3.
+So the numbers between 1 and (p - 1) are 1,2,3,4,5,6, as represented by the series of exponent values applied to 3.
 
-```bash
+```markdown
 3<sup>1</sup> = 3
 3<sup>2</sup> = 9
 3<sup>3</sup> = 27
@@ -40,10 +53,9 @@ So the numbers between 1 and (P-1) are 1,2,3,4,5,6, as represented by the series
 3<sup>6</sup> = 729
 ```
 
-
 Then, for each value of 3 multiplied by each of these exponents, we apply (mod 7).
 
-```bash
+```markdown
 3(mod 7) = 3
 9(mod 7) = 2
 27(mod 7) = 6
@@ -52,11 +64,15 @@ Then, for each value of 3 multiplied by each of these exponents, we apply (mod 7
 729(mod 7) = 1
 ```
 
-In each case, we get a distinct number, therefore 3 is a primitive root of Prime 7. 
+In each case, we get a distinct number, therefore 3 is a Primitive Root of Prime 7. 
 
-In the script, a helper method is defined to find primitive roots of given Prime numbers. In crytography parlance, the primitive root is called the *generator*, so lets call it that.
+In the script, a helper method is defined to find Primitive Roots of given Prime numbers. In cryptographic parlance, 
+the Primitive Root is called the *generator*, so lets call it that.
 
-Coming back to Alice, she now has a Prime number and a generator, which she shares with Bob. Either apart of together, these numbers cannot be used to decrypt data, so there is no issue in sharing them on a network. 
+Coming back to Alice, she now has a Prime number and a generator, which she shares with Bob. Either apart of together, 
+these numbers cannot be used to decrypt data, so there is no issue in sharing them on a network. 
+
+## The exchange of an encrypted message
 
 Both Alice and Bob now perform another computation to generate a payload.
 
@@ -64,32 +80,33 @@ First, each party chooses a random secret number. They **never** share these num
 
 Alice now generates the following payload:
 
-```bash
-alice_payload = generator<sup>alice_secret</sup>(mod P)
+```markdown
+alice_payload = generator<sup>alice_secret</sup>(mod p)
 ```
  and sends it to Bob.
  
  Bob does the same:
-```bash
-bob_payload = generator<sup>bob_secret</sup>(mod P)
+```markdown
+bob_payload = generator<sup>bob_secret</sup>(mod p)
 ```
 and sends it to Alice.
 
 Using each other's payloads, the can now perform a final calculation to reveal the shared component in the payloads, which is their shared key:
 
 Alice
-```bash
-key=bob_payload<sup>alice_secret</sup>(mod P)
+```markdown
+key=bob_payload<sup>alice_secret</sup>(mod p)
 ```
  
 Bob
-```bash
-key=alice_payload<sup>bob_secret</sup>(mod P)
+```markdown
+key=alice_payload<sup>bob_secret</sup>(mod p)
 ```
 
 They now both have `key`, which has never been shared across the network, with which they can encrypt and decrypt data.
 
-**The script**
+## The script
 
-Run the script to see this in action. No inputs are required. The script chooses random numbers for you. The script also contains comments which provide further information.
+Run the script to see this in action. No inputs are required. The script chooses random numbers for you. 
+The script also contains comments which provide further information.
  

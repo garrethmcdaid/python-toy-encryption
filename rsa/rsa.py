@@ -42,7 +42,7 @@ def get_smallest_co_prime(M):
 def is_prime(num):
     '''
     This method tests if a chosen number is a Prime number.
-    RSA requires the use of Prime numbers.
+    - RSA requires the use of Prime numbers.
     '''
     if num == 0 or num == 1:
         return False
@@ -57,7 +57,7 @@ def is_prime(num):
 def egcd(a, b):
     '''
     Python implementation of extended Euclidean algorithm
-    - required to calculate modular inverse
+    - required to calculate the modular inverse
     '''
     if a == 0:
         return (b, 0, 1)
@@ -99,28 +99,30 @@ while p2 == p1:
 # p1 = 7
 # p2 = 11
 
-print(f'prime1: {p1} prime2: {p2}')
+print(f'\nCreate the RSA Framework')
+print(f'########################\n')
+
+print(f'p1: {p1} p2: {p2}')
 
 # Step 2
 # Multiply the 2 Prime numbers
 factorOfPrimes = p1*p2
 
-print(f'factorOfPrimes: {factorOfPrimes}')
-
+print(f'F: {factorOfPrimes}')
 
 # Step 3
-# Find the PHI of the factor of the Primes
+# Find the PHI value of the factor of the Primes
 # This is the essential part of RSA. Only one party knows this value
 phiOfFactorOfPrimes = (p1 - 1)*(p2 - 1)
 
-print(f'phiOfFactorOfPrimes: {phiOfFactorOfPrimes}')
+print(f'PHI(F): {phiOfFactorOfPrimes}')
 
 # Step 4
 # Get a small exponent (to the power of) of the PHI value of the factor of Primes
 # This value needs to be coprime with the PHI value of the factor of Primes
 pubExp = get_smallest_co_prime(phiOfFactorOfPrimes)
 
-print(f'pubExp: {pubExp}')
+print(f'Public Exponent: {pubExp}')
 
 # We know have our Public Key, which is the exponent and the factor of Primes
 # Note that the PHI value of the factor of Primes is NOT exposed
@@ -140,18 +142,18 @@ print(f'Private Key: {priKey}')
 # Bob performs calculation 75**pubExp%phiOfFactorOfPrimes
 # This is the encrypted payload he sends to Alice
 
+print(f'\nComplete the exchange')
+print(f'#####################\n')
+
 message = random.choice(range(1,10))
-print(f'message: {message}')
+print(f'Plaintext message: {message}')
 
 # This is the encrypted message Bob sends to Alice
 encrypted_message = message**pubExp%factorOfPrimes
 
-print(f'encrypted_message: {encrypted_message}')
+print(f'\nEncrypted message: {encrypted_message}')
 
 # Alice can now decrypt the message with her Private Key
 decrypted_message = encrypted_message**priKey%factorOfPrimes
 
-print(f'decrypted_message: {decrypted_message}')
-
-
-
+print(f'\nDecrypted message: {decrypted_message}\n')
